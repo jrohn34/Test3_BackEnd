@@ -1,8 +1,7 @@
 package edu.iu.c322.test3.service;
 
 import edu.iu.c322.test3.repository.CustomerRepository;
-import edu.iu.habahram.primesservice.model.Customer;
-import edu.iu.habahram.primesservice.repository.AuthenticationDBRepository;
+import edu.iu.c322.test3.model.Customer;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -28,12 +27,12 @@ public class AuthenticationService implements
         BCryptPasswordEncoder bc = new BCryptPasswordEncoder();
         String passwordEncoded = bc.encode(customer.getPassword());
         customer.setPassword(passwordEncoded);
-        return customerRepository.save(customer);
+        return CustomerRepository.save(customer);
     }
 
     @Override
     public boolean login(String username, String password) throws IOException {
-        Customer customer = customerRepository.findByUsername(username);
+        Customer customer = CustomerRepository.findByUsername(username);
         if (customer != null) {
             BCryptPasswordEncoder bc = new BCryptPasswordEncoder();
             if(bc.matches(password, customer.getPassword())) {
@@ -51,7 +50,7 @@ public class AuthenticationService implements
             throws UsernameNotFoundException {
         try {
             Customer customer =
-                    authenticationRepository.findByUsername(username);
+                    CustomerRepository.findByUsername(username);
             if(customer == null) {
                 throw new UsernameNotFoundException("");
             }

@@ -1,0 +1,1 @@
+new_user,password123,new_user

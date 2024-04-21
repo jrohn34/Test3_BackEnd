@@ -2,6 +2,7 @@ package edu.iu.c322.test3.controllers;
 
 import edu.iu.c322.test3.model.Customer;
 import edu.iu.c322.test3.repository.CustomerRepository;
+import edu.iu.c322.test3.service.AuthenticationService;
 import edu.iu.c322.test3.service.IAuthenticationService;
 import edu.iu.c322.test3.service.TokenService;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -23,6 +24,7 @@ public class AuthenticationController {
     private final IAuthenticationService authenticationService;
 
     private final TokenService tokenService;
+
 
 
     public AuthenticationController(AuthenticationManager authenticationManager,
@@ -54,6 +56,4 @@ public class AuthenticationController {
 
                 return tokenService.generateToken(authentication);
     }
-
-
 }
